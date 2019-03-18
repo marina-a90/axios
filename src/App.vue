@@ -19,17 +19,42 @@ export default {
     };
   },
   components: {},
-  created() {
-    postsService
-      .getPosts()
-      .then(response => response.data)
-      // .then(response => (this.posts = response.data))
-      .then(data => {
-        this.posts = data;
-      })
-      .catch(e => {
-        console.log(e);
+
+  // created() {
+  //   postsService
+  //     .getPosts()
+  //     .then(res => {
+  //       this.posts = res.data;
+  //       postsService
+  //         .createPosts({
+  //           title: "Our title",
+  //           body: "Our body"
+  //         })
+  //         .then(res => {
+  //           console.log(res.data);
+  //         })
+  //         .catch(e => {
+  //           console.log(e);
+  //         });
+  //     })
+  //     .catch(e => {
+  //       console.log(e);
+  //     });
+  // }
+
+  async created() {
+    try {
+      const { data } = await postsService.getPosts();
+      this.posts = data;
+
+      const { data: newPost } = await postsService.createPosts({
+        title: "bla",
+        body: "bla bla"
       });
+      console.log(newPost);
+    } catch (error) {
+      console.log(error);
+    }
   }
 };
 </script>
