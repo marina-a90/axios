@@ -1,12 +1,12 @@
-import axios from "axios";
+import { httpService } from "./HttpService";
 
 class PostsService {
   createPosts(post) {
-    return axios.post("https://jsonplaceholder.typicode.com/posts", post);
+    return httpService.post("https://jsonplaceholder.typicode.com/posts", post);
   }
 
   getPosts() {
-    return axios.get("https://jsonplaceholder.typicode.com/posts");
+    return httpService.get("https://jsonplaceholder.typicode.com/posts");
   }
 }
 
